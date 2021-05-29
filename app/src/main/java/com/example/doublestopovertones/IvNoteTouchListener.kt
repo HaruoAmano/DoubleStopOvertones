@@ -1,6 +1,7 @@
 package com.example.doublestopovertones
 
 import android.content.Context
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class IvNoteTouchListener(context: Context, viewGroupe: ViewGroup) : View.OnTouc
                 viewCornerX = view.getLeft()
                 viewCornerY = view.getTop()
                 screenY = y
+                return false
             }
             MotionEvent.ACTION_MOVE -> {
                 //音符を動かすときには♭、#を外し、ナチュラルに戻す。
@@ -60,5 +62,18 @@ class IvNoteTouchListener(context: Context, viewGroupe: ViewGroup) : View.OnTouc
             }
         }
         return true
+    }
+    fun ctlAccidentalBtn(view:View){
+        var accidentalSign = 0
+        if (view.id == ivNote1stId) {
+            chromaticTone1st = util.convStepChrome(view, noteFormat, accidentalSign)
+
+        }else{
+        }
+        Log.i(tagMsg,"view.id : $view.id")
+        Log.i(tagMsg,"ivNote1stId : $ivNote1stId")
+    }
+    companion object{
+        private const val tagMsg = "Myinfo_IvNoteListener"
     }
 }

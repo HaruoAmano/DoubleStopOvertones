@@ -5,9 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
-import android.view.ViewGroup
-import android.view.ViewTreeObserver
+import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import com.example.doublestopoverTone.ScaleTable
@@ -53,8 +51,14 @@ var noteFormat3rd = 0
 var accidentalSign1st = 0
 var accidentalSign2nd = 0
 
+//IvNoteTouchListenerで、タッチされているノートが第１音か第２音かの判定に使用する。
+val ivNote1stId = 0
+val ivNote2ndId = 0
+
 var chromaticTone1st = "00"
 var chromaticTone2nd = "00"
+//当アプリで使用するツール群
+var util = Util()
 
 val COLOR_PINK = "#E67098"
 val COLOR_ORANGE = "#F8C189"
@@ -69,12 +73,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var viewGroupe = findViewById<ViewGroup>(R.id.ViewGroupe)
-        //当アプリで使用するツール群
-        var util = Util()
         //第一音のIDを取得する。
         val ivNote1st= findViewById<ImageView>(R.id.ivNote1st)
+        val ivNote1stId = ivNote1st.id
         //第二音のIDを取得する。
         val ivNote2nd = findViewById<ImageView>(R.id.ivNote2nd)
+        val ivNote2ndId = ivNote2nd.id
         //第一音エリアのビューを取得する。
         val firstNoteView = findViewById<NoteView>(R.id.FirstNoteView)
 
@@ -201,6 +205,20 @@ class MainActivity : AppCompatActivity() {
 //            util.reLayout(ivNote2nd, R.drawable.zenonpu_sharp)
             accidentalSign2nd = -1
         }
+        registerForContextMenu(ivNote1st)
+        registerForContextMenu(ivNote2nd)
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.menu_accidental,menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return super.onContextItemSelected(item)
     }
     companion object {
         private const val tagMsg = "MyInfo_MainActivity : "

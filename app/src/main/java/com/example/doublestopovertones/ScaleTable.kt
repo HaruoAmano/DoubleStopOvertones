@@ -58,7 +58,7 @@ class ScaleTable {
             }
         }
         for (i in 0..95){
-            Log.i("ScaleTable","${scaleTable.chromaticStep[i]},${scaleTable.chromaticTone[i]},${scaleTable.chromaticFreq[i]},${scaleTable.chromaticName[i]}")
+            //Log.i("ScaleTable","${scaleTable.chromaticStep[i]},${scaleTable.chromaticTone[i]},${scaleTable.chromaticFreq[i]},${scaleTable.chromaticName[i]}")
         }
     }
     //最終的な表はここに作成される。

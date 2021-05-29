@@ -35,17 +35,17 @@ class BtnOvertoneClickListener(context: Context, viewGroupe: ViewGroup) : View.O
         var util = Util()
         //第１音の音高を取得する。
         chromaticTone1st = util.convStepChrome(ivNote1st,noteFormat,accidentalSign1st)
-        Log.i(tagMsg,"第１音　：${chromaticTone1st}")
+        //Log.i(tagMsg,"第１音　：${chromaticTone1st}")
         //第２音の音高を取得する。
         chromaticTone2nd = util.convStepChrome(ivNote2nd,noteFormat,accidentalSign2nd)
-        Log.i(tagMsg,"第２音　：${chromaticTone2nd}")
+        //Log.i(tagMsg,"第２音　：${chromaticTone2nd}")
         //Overtoneクラスの生成。
         var findThirdNote = ThirdNote()
         //getThirdNoteメソッドにより引数とした２つの音の共通倍音テーブルを取得。
         var thirdNoteTable = findThirdNote.getThirdNote(chromaticTone1st,chromaticTone2nd)
         for (i in 0..0){
-            Log.i(tagMsg,"第３音　：${thirdNoteTable.thirdNoteTone[i]}")
-            Log.i(tagMsg,"第３音STEP　：${thirdNoteTable.thirdNoteStep[i]}")
+            //Log.i(tagMsg,"第３音　：${thirdNoteTable.thirdNoteTone[i]}")
+            //Log.i(tagMsg,"第３音STEP　：${thirdNoteTable.thirdNoteStep[i]}")
         }
 
         //第３音エリアへのビューの表示
@@ -112,7 +112,7 @@ class BtnOvertoneClickListener(context: Context, viewGroupe: ViewGroup) : View.O
             }
         }
         for (i in 0..2) {
-            Log.i(tagMsg,"PhisacalStep :${thirdNotePhisacalStep[i]}")
+            //Log.i(tagMsg,"PhisacalStep :${thirdNotePhisacalStep[i]}")
         }
         //第３音のレイアウト　ImageViewの配列化がわからないので、べたで３つまで配置する。
         //最低倍音
