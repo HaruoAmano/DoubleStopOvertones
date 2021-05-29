@@ -82,16 +82,17 @@
 
     //音符
 
-    <ImageView
+    <ImageButton
         android:id="@+id/ivNote1st"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
+        android:background="@drawable/selector_note1st"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
         app:layout_constraintHeight_percent="0.145"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/zenonpu" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     //第１音　音部記号
     //音部記号
@@ -282,6 +283,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    //第２音
+    //黒
+
     <TextView
         android:id="@+id/tvDesc1st2"
         android:layout_width="0dp"
@@ -292,10 +296,10 @@
         android:textColor="@color/peal_orange"
         app:layout_constraintBottom_toTopOf="@id/guidelineH1"
         app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    //第２音
-    //黒
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tvDesc2nd0"

@@ -205,21 +205,8 @@ class MainActivity : AppCompatActivity() {
 //            util.reLayout(ivNote2nd, R.drawable.zenonpu_sharp)
             accidentalSign2nd = -1
         }
-        registerForContextMenu(ivNote1st)
-        registerForContextMenu(ivNote2nd)
     }
 
-    override fun onCreateContextMenu(
-        menu: ContextMenu?,
-        v: View?,
-        menuInfo: ContextMenu.ContextMenuInfo?) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-        menuInflater.inflate(R.menu.menu_accidental,menu)
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return super.onContextItemSelected(item)
-    }
     companion object {
         private const val tagMsg = "MyInfo_MainActivity : "
     }

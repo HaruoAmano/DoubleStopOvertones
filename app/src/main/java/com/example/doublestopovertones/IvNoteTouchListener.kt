@@ -28,11 +28,11 @@ class IvNoteTouchListener(context: Context, viewGroupe: ViewGroup) : View.OnTouc
 
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                view
                 //音符の現在位置（左上端）を変数に確保。
                 viewCornerX = view.getLeft()
                 viewCornerY = view.getTop()
                 screenY = y
-                return false
             }
             MotionEvent.ACTION_MOVE -> {
                 //音符を動かすときには♭、#を外し、ナチュラルに戻す。
@@ -58,7 +58,6 @@ class IvNoteTouchListener(context: Context, viewGroupe: ViewGroup) : View.OnTouc
                 //音程に応じ、♭・シャープボタンの有効無効を制御する。
                 //例えばシの時は#は表示しないとか、、、、、
                 //でもどうやってやればいい？
-
             }
         }
         return true
