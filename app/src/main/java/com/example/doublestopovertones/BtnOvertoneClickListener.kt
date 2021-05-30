@@ -14,15 +14,12 @@ class BtnOvertoneClickListener(context: Context, viewGroupe: ViewGroup) : View.O
     val ivNote2nd = viewGroupe.findViewById<ImageView>(R.id.ivNote2nd)
     val tvDesc = viewGroupe.findViewById<TextView>(R.id.TvDesc)
     val tvBack3rd = viewGroupe.findViewById<TextView>(R.id.tvBack3rd)
-    val firstNoteView = viewGroupe.findViewById<View>(R.id.FirstNoteView)
-    val secondNoteView = viewGroupe.findViewById<View>(R.id.secondNoteView)
     val thirdNoteView = viewGroupe.findViewById<View>(R.id.ThirdNoteView)
     val ivClef3rd =viewGroupe.findViewById<ImageView>(R.id.ivClef3rd)
     val ivNote3rd1 = viewGroupe.findViewById<ImageView>(R.id.ivNote3rd1)
     val ivNote3rd2 = viewGroupe.findViewById<ImageView>(R.id.ivNote3rd2)
     val ivNote3rd3 = viewGroupe.findViewById<ImageView>(R.id.ivNote3rd3)
     val ivSpeaker = viewGroupe.findViewById<ImageView>(R.id.ivSpeaker)
-    val ivMic = viewGroupe.findViewById<ImageView>(R.id.ivMic)
     val tvDesc1st0 = viewGroupe.findViewById<TextView>(R.id.tvDesc1st0)
     val tvDesc1st1 = viewGroupe.findViewById<TextView>(R.id.tvDesc1st1)
     val tvDesc1st2 = viewGroupe.findViewById<TextView>(R.id.tvDesc1st2)
@@ -34,31 +31,24 @@ class BtnOvertoneClickListener(context: Context, viewGroupe: ViewGroup) : View.O
         Log.i(tagMsg,"@@@@@@@@@@OVERTONE@@@@@@@@@@@ ボタン押下")
         var util = Util()
         //第１音の音高を取得する。
-        chromaticTone1st = util.convStepChrome(ivNote1st,noteFormat,accidentalSign1st)
-        //Log.i(tagMsg,"第１音　：${chromaticTone1st}")
+        chromaticTone1st = util.convPhisicalstep2Chromatictone(ivNote1st,noteFormat,accidentalSign1st)
         //第２音の音高を取得する。
-        chromaticTone2nd = util.convStepChrome(ivNote2nd,noteFormat,accidentalSign2nd)
-        //Log.i(tagMsg,"第２音　：${chromaticTone2nd}")
+        chromaticTone2nd = util.convPhisicalstep2Chromatictone(ivNote2nd,noteFormat,accidentalSign2nd)
         //Overtoneクラスの生成。
         var findThirdNote = ThirdNote()
         //getThirdNoteメソッドにより引数とした２つの音の共通倍音テーブルを取得。
         var thirdNoteTable = findThirdNote.getThirdNote(chromaticTone1st,chromaticTone2nd)
         for (i in 0..0){
-            //Log.i(tagMsg,"第３音　：${thirdNoteTable.thirdNoteTone[i]}")
-            //Log.i(tagMsg,"第３音STEP　：${thirdNoteTable.thirdNoteStep[i]}")
         }
 
         //第３音エリアへのビューの表示
-        tvDesc.setVisibility(View.INVISIBLE)
-        thirdNoteView.setVisibility(View.VISIBLE)
-        ivClef3rd.setVisibility(View.VISIBLE)        //音部記号の位置を設定。
+        tvDesc.visibility = View.INVISIBLE
+        thirdNoteView.visibility = View.VISIBLE
+        ivClef3rd.visibility = View.VISIBLE        //音部記号の位置を設定。
         util.moveNote(ivClef3rd, (oneLineHeight * 5).toInt())
         //背景色を変更
         tvBack3rd.setBackgroundColor(Color.rgb(200,231,237))
-//        firstNoteView.setBackgroundColor(Color.LTGRAY)
-//        secondNoteView.setBackgroundColor(Color.LTGRAY)
         thirdNoteView.setBackgroundColor(Color.rgb(200,231,237))
-
 
         //第３音の表示
         ivNote3rd1.setVisibility(View.VISIBLE)
@@ -160,11 +150,9 @@ class BtnOvertoneClickListener(context: Context, viewGroupe: ViewGroup) : View.O
         tvDesc2nd2.setText(thirdNoteTable.thirdNotedesc2[2])
 
 
-        //スピーカーボタンとマイクボタンを有効にする。
+        //スピーカーボタンを有効にする。
         ivSpeaker.isEnabled = true
         ivSpeaker.setColorFilter(R.color.purple_500, PorterDuff.Mode.SRC_IN)
-        ivMic.isEnabled = true
-        ivMic.setColorFilter(R.color.purple_500, PorterDuff.Mode.SRC_IN)
     }
     companion object {
         private const val tagMsg = "MyInfo_BtnOvertone : "

@@ -13,7 +13,7 @@ class ThirdNote {
      */
     val overtoneTable = ThirdNote.OvertoneTable()
     var thirdNoteTable = ThirdNoteTable()
-    var tw = TwelveArray()
+    var util = Util()
 
     fun getThirdNote(chromaticTone1st: String, chromaticTone2nd: String): ThirdNoteTable {
         var k: Int = 0
@@ -29,9 +29,9 @@ class ThirdNote {
                 }
                 //画面で指定された音高（chromaticTone1st）の倍音（overtoneTableをサーチ）が、
                 //第１音と第２音で共通であればthirdNoteTableに設定する。
-                if (tw.additionTwelve(chromaticTone1st, overtoneTable.overtone[i])
-                        == tw.additionTwelve(chromaticTone2nd, overtoneTable.overtone[j])) {
-                    thirdNoteTable.thirdNoteTone[k] = tw.additionTwelve(chromaticTone1st, overtoneTable.overtone[i])
+                if (util.additionTwelve(chromaticTone1st, overtoneTable.overtone[i])
+                        == util.additionTwelve(chromaticTone2nd, overtoneTable.overtone[j])) {
+                    thirdNoteTable.thirdNoteTone[k] = util.additionTwelve(chromaticTone1st, overtoneTable.overtone[i])
                     thirdNoteTable.thirdNotedesc1[k] = overtoneTable.desc[i]
                     thirdNoteTable.thirdNotedesc2[k] = overtoneTable.desc[j]
                     //第３音のノート上の位置および周波数・名前をScaleTableより取得する。
@@ -71,26 +71,7 @@ class ThirdNote {
                     "3 octave + 7th above", "3 octave + major7th above", "4 octave above", "4 octave + minor2nd above", "4 octave + 2nd above", "4 octave + minor3rd above",
                     "4 octave + major3rd above", "4 octave + 4th above", "4 octave + augment4th above"),
     )
-    //流儀に従い以下のメソッドを追加。
-    {
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (javaClass != other?.javaClass) return false
 
-            other as OvertoneTable
-
-            if (!overtone.contentEquals(other.overtone)) return false
-            if (!desc.contentEquals(other.desc)) return false
-
-            return true
-        }
-
-        override fun hashCode(): Int {
-            var result = overtone.contentHashCode()
-            result = 31 * result + desc.contentHashCode()
-            return result
-        }
-    }
 
     data class ThirdNoteTable(
             var thirdNoteTone: Array<String> = arrayOf
@@ -105,6 +86,5 @@ class ThirdNote {
             var thirdNoteFreq: FloatArray = FloatArray(6),
             var thirdNoteName: Array<String> = arrayOf
             ("   ", "   ", "   ", "   ", "   ", "   "))
-    //流儀に従い以下のメソッドを追加。
 
 }
