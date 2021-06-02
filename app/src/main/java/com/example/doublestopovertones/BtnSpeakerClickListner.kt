@@ -12,10 +12,13 @@ class BtnSpeakerClickListner : View.OnClickListener {
     var buffer: ShortArray? = null
 
     override fun onClick(v: View) {
+        Log.i("speaker","Click")
         if (audioTrack == null){
+            Log.i("speaker","prepareAudiotrack")
             prepareAudiotrack()
         }
         if (audioTrack!!.playState != AudioTrack.PLAYSTATE_PLAYING) {
+            Log.i("speaker","playAudiotrack")
             playAudiotrack()
         }else {
             stopAudiotrack ()
@@ -72,13 +75,12 @@ class BtnSpeakerClickListner : View.OnClickListener {
     fun calcAmplification():Double{
         //高音ほど大きな音で聞こえるため聴感上均一にするため周波数の逆数を乗じる。
         //今は勘で設定している。
-        var amplification = 1 / Math.pow(thirdNoteFreq1.toDouble(),1.2) * amplificationParm
+        var amplification = 1 / Math.pow(thirdNoteFreq[0].toDouble(),1.2) * amplificationParm
         return amplification
     }
     fun generateSignal(sample: Int): Double {
         val t = sample.toDouble() / SAMPLERATE
-        // y = a * sin (2PI * f * t), t = i/fs, 0 <= i < TotalSamples
-        return calcAmplification() * Math.sin(2.0 * Math.PI * thirdNoteFreq1.toDouble() * t)
+        return calcAmplification() * Math.sin(2.0 * Math.PI * thirdNoteFreq[0].toDouble() * t)
     }
 
     companion object {

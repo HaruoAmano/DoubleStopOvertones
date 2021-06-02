@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ViewGroupe"
+    android:id="@+id/viewGroup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_200"
@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".27" />
+        app:layout_constraintGuide_percent=".24" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineV3"
         android:layout_width="0dp"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".73" />
+        app:layout_constraintGuide_percent=".76" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineV6"
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".9" />
+        app:layout_constraintGuide_percent=".85" />
 
     //第１音エリア
     //第１音ノートカスタムビュー
@@ -87,6 +87,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
         app:layout_constraintHeight_percent="0.145"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,29 +114,30 @@
 
 
     //第３音エリアの背景
+
     <TextView
         android:id="@+id/tvBack3rd"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/pale_glay"
         app:layout_constraintBottom_toTopOf="@+id/guidelineH1"
-        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV5"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/pale_glay" />
+        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+        app:layout_constraintTop_toTopOf="parent" />
     //第３音　使い方説明
+
     <TextView
         android:id="@+id/TvDesc"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineH1"
-        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineV5"
-        app:layout_constraintTop_toTopOf="parent"
         android:text="@string/descMsg"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH1"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV5"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     //第３音　
-
     <com.example.doublestopovertones.NoteView
         android:id="@+id/ThirdNoteView"
         android:layout_width="0dp"
@@ -145,7 +147,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineH1"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV4"
         app:layout_constraintStart_toStartOf="@+id/guidelineV3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     //音符
 
@@ -153,36 +155,64 @@
         android:id="@+id/ivNote3rd1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.145"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineV4"
-        app:layout_constraintStart_toStartOf="@+id/guidelineV3"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_gravity="center"
         android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV4"
+        app:layout_constraintHeight_percent="0.145"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV3"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/zenonpu" />
 
     <ImageView
         android:id="@+id/ivNote3rd2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.145"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV4"
+        app:layout_constraintHeight_percent="0.145"
         app:layout_constraintStart_toStartOf="@+id/guidelineV3"
         app:layout_constraintTop_toBottomOf="@id/ivNote3rd1"
-        android:layout_gravity="center"
-        android:visibility="invisible"
         app:srcCompat="@drawable/zenonpu" />
 
     <ImageView
         android:id="@+id/ivNote3rd3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.145"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/guidelineV4"
+        app:layout_constraintHeight_percent="0.145"
         app:layout_constraintStart_toStartOf="@+id/guidelineV3"
         app:layout_constraintTop_toBottomOf="@id/ivNote3rd2"
+        app:srcCompat="@drawable/zenonpu" />
+
+    <ImageView
+        android:id="@+id/ivNote3rd4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
         android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV4"
+        app:layout_constraintHeight_percent="0.145"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV3"
+        app:layout_constraintTop_toBottomOf="@id/ivNote3rd2"
+        app:srcCompat="@drawable/zenonpu" />
+
+    <ImageView
+        android:id="@+id/ivNote3rd5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV4"
+        app:layout_constraintHeight_percent="0.145"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV3"
+        app:layout_constraintTop_toBottomOf="@id/ivNote3rd2"
         app:srcCompat="@drawable/zenonpu" />
 
     //第３音　音部記号
@@ -227,6 +257,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.145"
         app:layout_constraintStart_toStartOf="@+id/guidelineV5"
@@ -250,103 +281,135 @@
 
     //インターバル文言
     //第１音
-    //黒
-
-    <TextView
-        android:id="@+id/tvDesc1st0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="50dp"
-        android:gravity="center"
-        android:rotation="-90"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
-        app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    //ピンク
-
-    //オレンジ
-
     <TextView
         android:id="@+id/tvDesc1st1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="80dp"
-        android:gravity="center"
-        android:rotation="-90"
-        android:textColor="@color/pink"
-        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
-        app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    //第２音
-    //黒
-
-    <TextView
-        android:id="@+id/tvDesc1st2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="110dp"
-        android:gravity="center"
-        android:rotation="-90"
-        android:textColor="@color/peal_orange"
-        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
-        app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/tvDesc2nd0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="40dp"
         android:gravity="center"
         android:rotation="-90"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/guidelineH1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    //ピンク
-
     <TextView
         android:id="@+id/tvDesc2nd1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="40dp"
         android:gravity="center"
         android:rotation="-90"
-        android:textColor="@color/pink"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/guidelineH1"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    //オレンジ
 
+    //第２音
+    <TextView
+        android:id="@+id/tvDesc1st2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="70dp"
+        android:gravity="center"
+        android:rotation="-90"
+        android:textColor="@color/MY_PINK"
+        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/tvDesc2nd2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="70dp"
         android:gravity="center"
         android:rotation="-90"
-        android:textColor="@color/peal_orange"
+        android:textColor="@color/MY_PINK"
         app:layout_constraintBottom_toTopOf="@id/guidelineH1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineV2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    //第３音
+    <TextView
+        android:id="@+id/tvDesc1st3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="100dp"
+        android:gravity="center"
+        android:rotation="-90"
+        android:textColor="@color/MY_ORANGE"
+        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tvDesc2nd3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="100dp"
+        android:gravity="center"
+        android:rotation="-90"
+        android:textColor="@color/MY_ORANGE"
+        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    //第４音
+    <TextView
+        android:id="@+id/tvDesc1st4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="130dp"
+        android:gravity="center"
+        android:rotation="-90"
+        android:textColor="@color/MY_PEAL_GREEN"
+        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tvDesc2nd4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="130dp"
+        android:gravity="center"
+        android:rotation="-90"
+        android:textColor="@color/MY_PEAL_GREEN"
+        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    //第５音
+    <TextView
+        android:id="@+id/tvDesc1st5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="160dp"
+        android:gravity="center"
+        android:rotation="-90"
+        android:textColor="@color/MY_MOREPEAL_GREEN"
+        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tvDesc2nd5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="160dp"
+        android:gravity="center"
+        android:rotation="-90"
+        android:textColor="@color/MY_MOREPEAL_GREEN"
+        app:layout_constraintBottom_toTopOf="@id/guidelineH1"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     //下部ボタン群
     //音部記号選択ボタン
-
-
-
     <ImageView
         android:id="@+id/ivSelClef"
         android:layout_width="37dp"
@@ -414,7 +477,6 @@
         app:backgroundTint="@color/teal_700"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ivMic"
         app:layout_constraintStart_toEndOf="@+id/ivSpeaker"
         app:layout_constraintTop_toTopOf="@+id/guidelineH1" />
     //スピーカーボタン
@@ -429,18 +491,6 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineV2"
         app:layout_constraintTop_toTopOf="@+id/guidelineH1"
         app:srcCompat="@drawable/speaker"
-        app:tint="@color/glay" />
-    //マイクボタン
-
-    <ImageView
-        android:id="@+id/ivMic"
-        android:layout_width="33dp"
-        android:layout_height="34dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineV5"
-        app:layout_constraintStart_toEndOf="@+id/btnOvertone"
-        app:layout_constraintTop_toTopOf="@+id/guidelineH1"
-        app:srcCompat="@android:drawable/ic_btn_speak_now"
         app:tint="@color/glay" />
 
     //２ｎｄ♭ボタン

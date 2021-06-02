@@ -13,6 +13,8 @@
     <color name="holo_blue_dark">#334ACC</color>
     <color name="secondary_text_light">#AFD2EF</color>
     <color name="ThiredNoteBack">#E1F0FD</color>
-    <color name="pink">#E67098</color>
-    <color name="peal_orange">#F8C189</color>
+    <color name="MY_PINK">#E67098</color>
+    <color name="MY_ORANGE">#F49330</color>
+    <color name="MY_PEAL_GREEN">#538E1F</color>
+    <color name="MY_MOREPEAL_GREEN">#87BC2F</color>
 </resources>

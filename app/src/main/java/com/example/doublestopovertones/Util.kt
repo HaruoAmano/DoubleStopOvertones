@@ -1,12 +1,16 @@
 package com.example.doublestopovertones
 
+import android.content.Context
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
+import com.example.doublestopoverTone.ScaleTable
 import java.util.*
 
 class Util {
+    val scaleTable = ScaleTable()
+
     //再描画関数
     //    音符が初期状態の位置に戻ってしまうことを防ぐため。
     //    音符の画像を切り替える（♭♮#が押された）際はこの関数を呼び出すこと。
@@ -37,32 +41,96 @@ class Util {
         //（Stepは小さいほど音が高くなる点に注意！）
         //fmt  0:ト音記号　1:ハ音記号　2:へ音記号
         var chromaticStep = 0f
+        Log.i("phisical", "ivNote.top : ${ivNote.top.toInt()}")
+        Log.i("phisical", "step: ${((ivNote.top + ivNoteHeightHalf) / oneLineHeight)}")
         when (fmt) {
             0 -> chromaticStep =
-                (ivNote.getTop() + ivNoteHeightHalf) / oneLineHeight + accidentalSign.toFloat() / 2f + 15f
+                ((ivNote.top + ivNoteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 15
             1 -> chromaticStep =
-                (ivNote.getTop() + ivNoteHeightHalf) / oneLineHeight + accidentalSign.toFloat() / 2f + 21f
+                ((ivNote.top + ivNoteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 21
             2 -> chromaticStep =
-                (ivNote.getTop() + ivNoteHeightHalf) / oneLineHeight + accidentalSign.toFloat() / 2f + 27f
+                ((ivNote.top + ivNoteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 27
         }
+        Log.i("phisical", "chromaticStep : ${chromaticStep}")
+
         //もし下記でテーブルにHITしなかった場合、結果が明確に出るよう80を設定する。
         var chromaticTone = "80"
         //②ScaleTableよりchromaticStepに該当するchromaticTone（１２進）を取得する。
         for (i in 0..95) {
-            if (scaleTable.scaleTable.chromaticStep[i] == chromaticStep) {
-                chromaticTone = scaleTable.scaleTable.chromaticTone[i]
+            if (scaleTable.chromaticStep[i] == chromaticStep) {
+                chromaticTone = scaleTable.chromaticTone[i]
                 break
             }
         }
         return chromaticTone
     }
 
+    //臨時記号のボタンの表示・非表示を制御する。
+    //引き渡された画面上の情報から表示されている音を導出し、選択可能なボタンのみ表示するようにする。
+    fun ctlAccidentalBtnVisible(
+        ivNote: ImageView,
+        fmt: Int,
+        accidentalSign: Int,
+        viewGroup: ViewGroup
+    ) {
+        val ivNote1st = viewGroup.findViewById<ImageView>(R.id.ivNote1st)
+        val ivNote2nd = viewGroup.findViewById<ImageView>(R.id.ivNote2nd)
+        var ivFlat1st = viewGroup.findViewById<ImageView>(R.id.ivFlat1st)
+        var ivNatural1st = viewGroup.findViewById<ImageView>(R.id.ivNatural1st)
+        var ivSharp1st = viewGroup.findViewById<ImageView>(R.id.ivSharp1st)
+        var ivFlat2nd = viewGroup.findViewById<ImageView>(R.id.ivFlat2nd)
+        var ivNatural2nd = viewGroup.findViewById<ImageView>(R.id.ivNatural2nd)
+        var ivSharp2nd = viewGroup.findViewById<ImageView>(R.id.ivSharp2nd)
+        //引き渡された情報から、chrromaticTone（12進)を導出する。
+        var chromaticTone = convPhisicalstep2Chromatictone(ivNote, fmt, accidentalSign)
+        //12進を1桁目と2桁目に分解。
+        var charArray: CharArray = chromaticTone.toCharArray()
+        var _1Place: String = charArray[1].toString()
+        //選択可能なボタンのみを表示する。
+        var ivFlat = ivFlat1st
+        var ivNatural = ivNatural1st
+        var ivSharp = ivSharp1st
+        if (ivNote != ivNote1st) {
+            ivFlat = ivFlat2nd
+            ivNatural = ivNatural2nd
+            ivSharp = ivSharp2nd
+        }
+        ivFlat.visibility = View.VISIBLE
+        ivNatural.visibility = View.VISIBLE
+        ivSharp.visibility = View.VISIBLE
+        when (accidentalSign) {
+            //b
+            1 -> {
+                ivFlat.visibility = View.INVISIBLE
+                when (_1Place) {
+                    "3", "A" ->
+                        ivSharp.visibility = View.INVISIBLE
+                }
+            }
+            //♮
+            0 -> {
+                ivNatural.visibility = View.INVISIBLE
+                when (_1Place) {
+                    "0", "5" -> ivFlat.visibility = View.INVISIBLE
+                    "4", "B" -> ivSharp.visibility = View.INVISIBLE
+                }
+            }
+            -1 -> {
+                ivSharp.visibility = View.INVISIBLE
+                when (_1Place) {
+                    "1", "6" ->
+                        ivFlat.visibility = View.INVISIBLE
+                }
+            }
+        }
+    }
 
-    //*****12進同士の加算を行う。**************************************
-    //加算はカレンダーで処理させている。
-    //インプットは１２進形式(ex."4A")で、カレンダーに渡すために１０進＋１０進に変換する。(ex."04" "11")
-    //twelve1, twelve2とも上記変換後カレンダーにひき渡す。
-    //カレンダーで加算後、１２進形式に戻してリターンする。
+
+//*****12進同士の加算を行う。**************************************
+//加算はカレンダーで処理させている。
+//インプットは１２進形式(ex."4A")で、カレンダーに渡すために１０進＋１０進に変換する。(ex."04" "11")
+//twelve1, twelve2とも上記変換後カレンダーにひき渡す。
+//カレンダーで加算後、１２進形式に戻してリターンする。
     fun additionTwelve(twelve1: String, twelve2: String): String {
         //12進を1桁目と2桁目に分解。
         val charArray1: CharArray = twelve1.toCharArray()
@@ -122,3 +190,4 @@ class Util {
         private const val tagMsg = "MyInfo_Util : "
     }
 }
+
