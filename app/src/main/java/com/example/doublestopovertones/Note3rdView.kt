@@ -6,7 +6,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 
-class NoteView : View{
+class Note3rdView : View{
 
     private var linePaint = Paint()
     // コンストラクタ
@@ -22,7 +22,6 @@ class NoteView : View{
     override fun onDraw(canvas: Canvas?) {
 //        drawGuideLine(canvas)
         drawLine(canvas)
-        underLine(canvas)
     }
 
 //    private fun drawGuideLine(canvas: Canvas?) {
@@ -39,7 +38,6 @@ class NoteView : View{
 //            lineY += 2
 //        }
 //    }
-
     private fun drawLine(canvas: Canvas?) {
         linePaint.color = resources.getColor(R.color.black)
         var lineY = startOfStuffNotation       //五線譜を描画し始めるライン数
@@ -50,19 +48,7 @@ class NoteView : View{
             lineY += 2
         }
     }
-    private fun underLine(canvas: Canvas?) {
-        linePaint.color = resources.getColor(R.color.black)
-        var lineY = 6       //五線譜を描画し始めるライン数
-        for (i in 1..18 step 2) {
-            canvas?.drawLine(
-                270f,
-                (oneLineHeight * lineY).toFloat(),
-                380f,
-                (oneLineHeight * lineY).toFloat(),
-                linePaint)
-            lineY += 2
-        }
-    }
+
     // 初期化
     private fun initialize(){
         linePaint = Paint()

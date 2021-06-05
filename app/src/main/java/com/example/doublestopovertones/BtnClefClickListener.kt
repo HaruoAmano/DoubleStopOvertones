@@ -4,14 +4,16 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.example.doublestopovertones.com.example.doublestopovertones.DisplayCtl
 
 class BtnClefClickListener(context: Context, viewGroup: ViewGroup) : View.OnClickListener {
-    val vG = viewGroup
-    val ivClef1st = viewGroup.findViewById<ImageView>(R.id.ivClef1st)
-    val ivClef2nd = viewGroup.findViewById<ImageView>(R.id.ivClef2nd)
-    val ivNote1st = viewGroup.findViewById<ImageView>(R.id.ivNote1st)
-    val ivNote2nd = viewGroup.findViewById<ImageView>(R.id.ivNote2nd)
-    val util = Util()
+    private val vG = viewGroup
+    private val ivClef1st = viewGroup.findViewById<ImageView>(R.id.ivClef1st)
+    private val ivClef2nd = viewGroup.findViewById<ImageView>(R.id.ivClef2nd)
+    private val ivNote1st = viewGroup.findViewById<ImageView>(R.id.ivNote1st)
+    private val ivNote2nd = viewGroup.findViewById<ImageView>(R.id.ivNote2nd)
+    private val util = Util()
+    private val displayCtl = DisplayCtl(viewGroup)
     override fun onClick(v: View?) {
 
         //音部記号ボタンはトグルスイッチとして動作する。（ト音→ハ音→へ音→ト音…）
@@ -43,10 +45,10 @@ class BtnClefClickListener(context: Context, viewGroup: ViewGroup) : View.OnClic
         //上記で移動された音符位置に適合する臨時記号ボタンを表示する。
         ivNote1st.setImageResource(R.drawable.zenonpu)
         accidentalSign1st = 0
-        util.ctlAccidentalBtnVisible(ivNote1st, noteFormat, accidentalSign1st, vG)
+        displayCtl.ctlAccidentalBtnVisible(ivNote1st, noteFormat, accidentalSign1st, vG)
         ivNote2nd.setImageResource(R.drawable.zenonpu)
         accidentalSign2nd = 0
-        util.ctlAccidentalBtnVisible(ivNote2nd, noteFormat, accidentalSign2nd, vG)
+        displayCtl.ctlAccidentalBtnVisible(ivNote2nd, noteFormat, accidentalSign2nd, vG)
     }
 
 }

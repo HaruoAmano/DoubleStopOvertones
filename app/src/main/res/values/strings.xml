@@ -2,15 +2,20 @@
     <string name="app_name">DoubleStopOvertones</string>
     <string name="descMsg">
         \n
-        "   "Please touch and set\n
-        "       "←first note and\n
-        "                    "second note→.\n
         \n
-        "   "And press Overtone button,\n
-        "   "you will get Third Note of their!!\n
         \n
-        "   "You want to confirm Third Note\n
-        "   "of your sound,\n
-        "   "please press MIC button and show\n
-        "   "spectrum Analizer.</string>
+        \n
+        "                   "Please touch and set\n
+        "                       "←First note and\n
+        "                                    "Second note→.\n
+        \n
+        "                   "And press Overtone button,\n
+        "                   "you will get Third Note of their!!\n
+        \n
+        "                   "You want to hear Third note　tone,\n
+        "                   "please press Third note!</string>
+    <string name="prefTitle">Preferences</string>
+    <string name="prefRbNumNotesTitle">Number of Notes</string>
+    <string name="prefRbBaseFreqTitle">Base Frequency(A)</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
