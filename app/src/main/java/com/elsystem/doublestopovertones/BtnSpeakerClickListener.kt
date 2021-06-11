@@ -1,25 +1,17 @@
-package com.example.doublestopovertones
+package com.elsystem.doublestopovertones
 
 import android.media.AudioAttributes
 import android.media.AudioFormat
 import android.media.AudioTrack
 import android.media.AudioTrack.WRITE_NON_BLOCKING
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import kotlin.math.pow
 import kotlin.math.sin
 
-class BtnSpeakerClickListener(view : View, viewGroup : ViewGroup) : View.OnClickListener {
-    private var audioTrack : AudioTrack? = null
+open class BtnSpeakerClickListener(view : View, viewGroup : ViewGroup) : View.OnClickListener {
     private var buffer: ShortArray? = null
-//    private var ivNote3rd1 = viewGroup.findViewById<ImageView>(R.id.ivNote3rd1)
-//    private var ivNote3rd2 = viewGroup.findViewById<ImageView>(R.id.ivNote3rd2)
-//    private var ivNote3rd3 = viewGroup.findViewById<ImageView>(R.id.ivNote3rd3)
-//    private var ivNote3rd4 = viewGroup.findViewById<ImageView>(R.id.ivNote3rd4)
-//    private var ivNote3rd5 = viewGroup.findViewById<ImageView>(R.id.ivNote3rd5)
     private var btnSpeaker1 = viewGroup.findViewById<Button>(R.id.btnSpeaker1)
     private var btnSpeaker2 = viewGroup.findViewById<Button>(R.id.btnSpeaker2)
     private var btnSpeaker3 = viewGroup.findViewById<Button>(R.id.btnSpeaker3)
@@ -46,7 +38,7 @@ class BtnSpeakerClickListener(view : View, viewGroup : ViewGroup) : View.OnClick
     }
     private fun playAudiotrack(){
         audioTrack!!.reloadStaticData()
-        audioTrack!!.setLoopPoints(0,SAMPLERATE*10,2)
+        audioTrack!!.setLoopPoints(0,SAMPLERATE*10,5)
         audioTrack!!.write(buffer!!, 0, buffer!!.count(), WRITE_NON_BLOCKING)
         audioTrack!!.play()
     }
@@ -64,22 +56,22 @@ class BtnSpeakerClickListener(view : View, viewGroup : ViewGroup) : View.OnClick
         generateBuffer(freq)
         val bufferSizeInBytes = SAMPLERATE * duration.toInt() * 2
         audioTrack = AudioTrack.Builder()
-                .setAudioAttributes(
-                        AudioAttributes.Builder()
-                                .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
-                                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                                .build()
-                )
-                .setAudioFormat(
-                        AudioFormat.Builder()
-                                .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
-                                .setSampleRate(SAMPLERATE)
-                                .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
-                                .build()
-                )
-                .setBufferSizeInBytes(bufferSizeInBytes)
-                .setTransferMode(AudioTrack.MODE_STATIC)
-                .build()
+            .setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                    .build()
+            )
+            .setAudioFormat(
+                AudioFormat.Builder()
+                    .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                    .setSampleRate(SAMPLERATE)
+                    .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
+                    .build()
+            )
+            .setBufferSizeInBytes(bufferSizeInBytes)
+            .setTransferMode(AudioTrack.MODE_STATIC)
+            .build()
         //	write buffer
 //        audioTrack!!.write(buffer!!, 0, buffer!!.size)
     }
@@ -109,7 +101,7 @@ class BtnSpeakerClickListener(view : View, viewGroup : ViewGroup) : View.OnClick
         private const val SAMPLERATE = 44100
 
         // signal function params
-        private const val amplificationParam = 30
+        private const val amplificationParam = 500
         private const val duration = 10.0 // [sec]
     }
 }

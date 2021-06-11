@@ -1,11 +1,7 @@
-package com.example.doublestopovertones
+package com.elsystem.doublestopovertones
 
-import android.graphics.Color
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import java.util.*
 
 class Util {
@@ -22,7 +18,7 @@ class Util {
         )
     }
 
-    //画面上の指定Step位置に音符を移動する・
+    //画面上の指定Step位置に音符を移動する。
     fun moveNote(ivNote: ImageView, step: Int) {
         ivNote.layout(
             ivNote.left,
@@ -33,20 +29,20 @@ class Util {
     }
 
     //*****画面上の物理的な位置から実際の音高（１２進）を導出する。******************************
-    fun convPhysicalstep2Chromatictone(ivNote: View, fmt: Int, accidentalSign: Int): String {
+    fun convPhysicalstep2Chromatictone(ivNote: View, accidentalSign: Int): String {
         //画面上の音符の位置より、chromaticTone(12進)を導出する。
         //①画面上の音符位置からscaleTableに管理されているchromaticToneを導出する。
         //以下でフラットの場合は0.5、シャープの場合は-0.5を加算する。（ + accidentalSign.toFloat() / 2f )
         //（Stepは小さいほど音が高くなる点に注意！）
         //fmt  0:ト音記号　1:ハ音記号　2:へ音記号
         var chromaticStep = 0f
-        when (fmt) {
+        when (noteFormat) {
             0 -> chromaticStep =
-                ((ivNote.top + ivNoteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 15
+                ((ivNote.top + noteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 15
             1 -> chromaticStep =
-                ((ivNote.top + ivNoteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 21
+                ((ivNote.top + noteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 21
             2 -> chromaticStep =
-                ((ivNote.top + ivNoteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 27
+                ((ivNote.top + noteHeightHalf) / oneLineHeight).toInt() + (accidentalSign.toFloat() / 2f) + 27
         }
         //もし下記でテーブルにHITしなかった場合、結果が明確に出るよう80を設定する。
         var chromaticTone = "80"

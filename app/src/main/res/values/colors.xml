@@ -20,6 +20,7 @@
     <color name="MY_PEAL_GRAY">#E6E6E6</color>
     <color name="MY_DARK_GRAY">#646464</color>
     <color name="MY_DARK_BLUE">#314868</color>
+    <color name="MY_DARK_BLUE_TEXT_VIEW">#597594</color>
     <color name="MY_OVERTONE_BTN">#233145</color>
     <color name="MY_3rdTone1">#000000</color>
     <color name="MY_3rdTone2">#305B9A</color>
@@ -27,6 +28,6 @@
     <color name="MY_3rdTone4">#8B8C8E</color>
     <color name="MY_3rdTone5">#A5A6A8</color>
     <color name="MY_PAPER_YELLOW">#EDE8D6</color>
-    <color name="MY_BLUE_GRAY">#597594</color>
+    <color name="MY_PALE_BLUEGRAY">#C2D0E3</color>
     <color name="MY_SPEAKER_BTN_BACK">#B9BCD1</color>
 </resources>

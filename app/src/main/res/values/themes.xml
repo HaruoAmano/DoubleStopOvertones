@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.DoubleStopOvertones" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/MY_BLUE_GRAY</item>
-        <item name="colorPrimaryVariant">@color/MY_DARK_BLUE</item>
+        <item name="colorPrimary">@color/MY_PALE_BLUEGRAY</item>
+        <item name="colorPrimaryVariant">@color/MY_OVERTONE_BTN</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/MY_PINK</item>

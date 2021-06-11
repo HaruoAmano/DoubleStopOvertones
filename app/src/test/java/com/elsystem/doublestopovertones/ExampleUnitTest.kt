@@ -1,4 +1,4 @@
-package com.example.doublestopovertones
+package com.elsystem.doublestopovertones
 
 import org.junit.Test
 

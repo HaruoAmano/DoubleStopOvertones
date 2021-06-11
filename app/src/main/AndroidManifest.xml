@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.doublestopovertones">
+    package="com.elsystem.doublestopovertones">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -11,12 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoubleStopOvertones">
-        <activity android:name=".DrawUnderline2"></activity>
         <activity
-            android:name=".PreferenceActivity"
+            android:name="com.elsystem.doublestopovertones.PreferenceActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.elsystem.doublestopovertones.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.doublestopovertones
+package com.elsystem.doublestopovertones
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.Switch
 
 class PreferenceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +25,6 @@ class PreferenceActivity : AppCompatActivity() {
         val rbBaseFreq4 = findViewById<RadioButton>(R.id.rbBaseFreq4)
         val rbBaseFreq5 = findViewById<RadioButton>(R.id.rbBaseFreq5)
         val rbBaseFreq6 = findViewById<RadioButton>(R.id.rbBaseFreq6)
-//        val swDispSpeakerBtn = findViewById<Switch>(R.id.toggle_switch)
         val btnBack = findViewById<Button>(R.id.btnBack)
         // "PrefData"という名前でインスタンスを生成。書き込み先のデータ名称となる。
         val prefData: SharedPreferences =
@@ -34,7 +32,7 @@ class PreferenceActivity : AppCompatActivity() {
         //Preferenceデータを読み込み、読み込んだ値を各Viewに反映する。
         rgNumNotes.check(rbNumNotes3.id)
         rgBaseFreq.check(rbBaseFreq3.id)
-        when (prefData.getInt("NumNotes", 3)){
+        when (prefData.getInt("NumNotes", 1)){
             1 -> rgNumNotes.check(rbNumNotes1.id)
             2 -> rgNumNotes.check(rbNumNotes2.id)
             3 -> rgNumNotes.check(rbNumNotes3.id)
@@ -49,11 +47,6 @@ class PreferenceActivity : AppCompatActivity() {
             5 -> rgBaseFreq.check(rbBaseFreq5.id)
             6 -> rgBaseFreq.check(rbBaseFreq6.id)
         }
-//        when (prefData.getBoolean("SpBtnDisp", false)){
-//            true -> swDispSpeakerBtn.isChecked = true
-//            false -> swDispSpeakerBtn.isChecked = false
-//        }
-
         btnBack.setOnClickListener {
             // 画面上に設定されている値を書き込む。
             val editor = prefData.edit()

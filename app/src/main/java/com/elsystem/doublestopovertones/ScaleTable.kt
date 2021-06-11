@@ -1,6 +1,5 @@
-package com.example.doublestopovertones
+package com.elsystem.doublestopovertones
 
-import android.util.Log
 import kotlin.math.pow
 
 //*内部処理の基本となるScaleテーブルを作成する。
@@ -9,7 +8,7 @@ import kotlin.math.pow
 //管理しているのは以下の４項目
 //chromaticStep：画面内容から導出した0.5刻みの数値（昇順となっておりToneと逆である点注意）
 // chromaticTone：１２進数化した音高（ex.5B）
-// chromaticFreq：周波数（440HZ基準）
+// chromaticFreq：周波数 一旦440HZ基準でテーブル作成し、ThirdNoteTable設定時にPreference指定に合わせ変調する。
 // chromaticName：音解名（ex.B6）
 class ScaleTable {
     //増幅先
@@ -51,24 +50,10 @@ class ScaleTable {
         }
         //周波数
         k = 0
-        var freq440 = 0f
-        var coefficient = 0f
-        when (prefBaseFreq) {
-            1 -> coefficient = (440f / 440f)  //coefficient:係数
-            2 -> coefficient = (441f / 440f)
-            3 -> coefficient = (442f / 440f)
-            4 -> coefficient = (443f / 440f)
-            5 -> coefficient = (444f / 440f)
-            6 -> coefficient = (445f / 440f)
-        }
-//        Log.i("Hz","$k : ${prefBaseFreq}")
-//        Log.i("Hz","$k : ${coefficient}")
 
         for (i in 0..7) {
             for (j in 0..11) {
-                freq440 = freqBase[j] / (2.0.pow(i.toDouble())).toFloat()
-                chromaticFreq.add(k, freq440 * coefficient)
-//                Log.i("Hz","$k : ${chromaticFreq[k]}")
+                chromaticFreq.add(k, freqBase[j] / (2.0.pow(i.toDouble())).toFloat())
                 k += 1
             }
         }
