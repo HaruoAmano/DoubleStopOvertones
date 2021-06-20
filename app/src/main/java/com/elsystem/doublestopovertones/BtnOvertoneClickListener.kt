@@ -88,13 +88,20 @@ class BtnOvertoneClickListener(context: Context,viewGroup: ViewGroup) : View.OnC
         val thirdNotePhysicalStep:MutableList<Int> = mutableListOf(0)
         if (prefNumNotes == 1) {
             when (thirdNote.thirdNoteChromaticStep[0]) {
-                in 0f..17f -> {
-                    ivClef3rd.setImageResource(R.drawable.gclef8)
+                in 0f..10f -> {
+                    ivClef3rd.setImageResource(R.drawable.gclef15)
                     for (i in 0..4) {
-                        thirdNotePhysicalStep.add(i, thirdNoteIntegerStep[i] + 6)
+                        //physicalStep3rdの設定（thirdNoteNaturalStep[i]を第３音画面に合わせスライドさせる。）
+                        thirdNotePhysicalStep.add(i, thirdNoteIntegerStep[i] -1)
                     }
                 }
-                in 17.5f..38f -> {
+                in 10.5f..24f -> {
+                    ivClef3rd.setImageResource(R.drawable.gclef8)
+                    for (i in 0..4) {
+                        thirdNotePhysicalStep.add(i, thirdNoteIntegerStep[i] - 8)
+                    }
+                }
+                in 24.5f..38f -> {
                     ivClef3rd.setImageResource(R.drawable.gclef)
                     for (i in 0..4) {
                         thirdNotePhysicalStep.add(i, thirdNoteIntegerStep[i] - 15)

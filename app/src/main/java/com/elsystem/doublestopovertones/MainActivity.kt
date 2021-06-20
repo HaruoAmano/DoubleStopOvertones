@@ -74,11 +74,11 @@ class MainActivity : AppCompatActivity() {
         stuffNotation = StuffNotation(this)
         addContentView(stuffNotation,
             ViewGroup.LayoutParams
-                (ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.FILL_PARENT))
+                (ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
         Log.i(tagMsg, "---ContentViewの設定---!")
         //Preferenceの値を取得する。
         val prefData: SharedPreferences = getSharedPreferences("PrefData", Context.MODE_PRIVATE)
-        prefNumNotes = prefData.getInt("NumNotes", 3)
+        prefNumNotes = prefData.getInt("NumNotes", 1)
         prefBaseFreq = prefData.getInt("BaseFreq", 3)
         //当アプリで使用するツール群
 //        var util = Util()
@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         val util = Util()
         val displayCtl = ControlDisplay(viewGroup)
         //observerを使用してView要素の配置完了を確認する。
+        //カスタムビューのonSizeChanged()を捉えた方が、効率よいのではないか？要検討
         val observer: ViewTreeObserver = viewGroup.viewTreeObserver
             observer.addOnGlobalLayoutListener {
             Log.i(tagMsg, "---ViewTreeObserver---!")

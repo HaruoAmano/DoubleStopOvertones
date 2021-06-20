@@ -61,7 +61,7 @@ class PreferenceActivity : AppCompatActivity() {
             editor.putInt("BaseFreq",prefBaseFreq)
 //            editor.putBoolean("SpBtnDisp",prefSpBtnDisp)
             //applyは非同期、commitは同期で書き込み。applyの方が問題が少ないかも＞
-            // /data/data/com.example.doublestopovertones/shared_prefs/配下に保管される。
+            // /data/data/com.elsystem.doublestopovertones/shared_prefs/配下に保管される。
             // （View->Tool Window）Device File Explorerで確認できる。
             editor.apply()
             finish()
